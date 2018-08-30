@@ -16,16 +16,16 @@
 
 <body>
 
-    <ons-page id="tool">
-        <ons-toolbar>
+    <ons-page id="tool" >
+        <ons-toolbar style="background: rgb(84, 152, 230) ;">
             <div class="left">
-                <ons-toolbar-button class="zmdi zmdi-shopping-basket"></ons-toolbar-button>
+                <ons-toolbar-button icon="md-shopping-basket"></ons-toolbar-button>
             </div>
             <div class="center">
                 <div align="center">Home</div>
             </div>
             <div class="right">
-                <ons-toolbar-button class="zmdi zmdi-alert-octagon"></ons-toolbar-button>
+                <ons-toolbar-button icon="md-alert-octagon"></ons-toolbar-button>
             </div>
         </ons-toolbar>
         <ons-tabbar swipeable position="auto">
@@ -36,28 +36,108 @@
         </ons-tabbar>
     </ons-page>
 
-    <template id="Home.html">
+    <template id="Home.html" >
         <ons-page id="Home">
             <p style="text-align: center; margin-top: 10px;">
                 <ons-search-input placeholder="Search" onchange="ons.notification.alert('Searched for: ' + this.value)"></ons-search-input>
             </p>
-            <div class="slidePic">
-                <ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel">
-                    <ons-carousel-item style="background: url('images/1.jpg') no-repeat center; background-size: contain;">
-                    </ons-carousel-item>
-                    <ons-carousel-item style="background: url('images/2.jpg') no-repeat center; background-size: contain;">
-                    </ons-carousel-item>
-                    <ons-carousel-item style="background: url('images/3.jpg') no-repeat center; background-size: contain;">
-                    </ons-carousel-item>
-                </ons-carousel>
-            </div>
+            <ons-carousel swipeable auto-scroll overscrollable id="carousel" style="height: 300px;">
+                <ons-carousel-item style="background: url('images/1.jpg') no-repeat center; background-size: contain">
+
+                </ons-carousel-item>
+                <ons-carousel-item style="background: url('images/2.jpg') no-repeat center; background-size: contain">
+
+                </ons-carousel-item>
+                <ons-carousel-item style="background: url('images/3.jpg') no-repeat center; background-size: contain">
+
+                </ons-carousel-item>
+            </ons-carousel>
+            <ons-row fullscreen style="height:120" ; vertical-align "center";>
+                <ons-col style="background: palevioletred">
+                    <p style="text-align: center; margin: 10px;">
+                        <ons-icon size="60px" icon="md-face"></ons-icon>
+                    </p>
+                    <p style="text-align: center; margin: 10px;">
+                        Beauty
+                    </p>
+                </ons-col>
+                <ons-col style="background: greenyellow">
+                    <p style="text-align: center; margin: 10px;">
+                        <ons-icon size="60px" icon="md-bike"></ons-icon>
+                    </p>
+                    <p style="text-align: center; margin: 10px;">
+                        Sports
+                    </p>
+                </ons-col>
+                <ons-col style="background: rgb(13, 195, 250)">
+                    <p style="text-align: center; margin: 10px;">
+                        <ons-icon size="60px" icon="md-laptop"></ons-icon>
+                    </p>
+                    <p style="text-align: center; margin: 10px;">
+                        Computer
+                    </p>
+                </ons-col>
+            </ons-row>
+            <ons-row fullscreen style="height:120" ; vertical-align "center";>
+                    <ons-col style="background: rgb(208, 160, 224)">
+                        <p style="text-align: center; margin: 10px;">
+                            <ons-icon size="60px" icon="md-camera"></ons-icon>
+                        </p>
+                        <p style="text-align: center; margin: 10px;">
+                            Camera
+                        </p>
+                    </ons-col>
+                    <ons-col style="background: rgb(82, 199, 144)">
+                        <p style="text-align: center; margin: 10px;">
+                            <ons-icon size="60px" icon="md-seat"></ons-icon>
+                        </p>
+                        <p style="text-align: center; margin: 10px;">
+                            Furniture
+                        </p>
+                    </ons-col>
+                    <ons-col style="background: rgb(64, 152, 211)">
+                        <p style="text-align: center; margin: 10px;">
+                            <ons-icon size="60px" icon="md-smartphone-iphone"></ons-icon>
+                        </p>
+                        <p style="text-align: center; margin: 10px;">
+                            Smartphone
+                        </p>
+                    </ons-col>
+                </ons-row>
+                <ons-row fullscreen style="height:120" ; vertical-align "center";>
+                        <ons-col style="background: rgb(222, 191, 228)">
+                            <p style="text-align: center; margin: 10px;">
+                                <ons-icon size="60px" icon="md-toys"></ons-icon>
+                            </p>
+                            <p style="text-align: center; margin: 10px;">
+                                Toy
+                            </p>
+                        </ons-col>
+                        <ons-col style="background: rgb(138, 238, 179)">
+                            <p style="text-align: center; margin: 10px;">
+                                <ons-icon size="60px" icon="md-wrench"></ons-icon>
+                            </p>
+                            <p style="text-align: center; margin: 10px;">
+                                Hardware
+                            </p>
+                        </ons-col>
+                        <ons-col style="background: rgb(123, 171, 235)">
+                            <p style="text-align: center; margin: 10px;">
+                                <ons-icon size="60px" icon="md-floppy"></ons-icon>
+                            </p>
+                            <p style="text-align: center; margin: 10px;">
+                                Appliance
+                            </p>
+                        </ons-col>
+                    </ons-row>
+
         </ons-page>
     </template>
 
     <template id="Cart.html">
         <ons-page id="Cart">
-            <p style="text-align: center;">
-                This is the second page.
+            <p style="">
+                Shopping Cart
             </p>
         </ons-page>
     </template>
