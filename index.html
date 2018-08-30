@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,22 +13,46 @@
 
     <title>Shopping</title>
 </head>
+
 <body>
-    <ons-page id="Main">
+
+    <ons-page id="tool">
         <ons-toolbar>
-          <div class="left">
-            <ons-toolbar-button class="zmdi zmdi-shopping-basket"></ons-toolbar-button>
-          </div>
-      
-          <div class="center"><div align="center">Home</div> </div>
-      
-          <div class="right">
-            <ons-toolbar-button class="zmdi zmdi-alert-octagon"></ons-toolbar-button>
-            
-          </div>
+            <div class="left">
+                <ons-toolbar-button class="zmdi zmdi-shopping-basket"></ons-toolbar-button>
+            </div>
+            <div class="center">
+                <div align="center">Home</div>
+            </div>
+            <div class="right">
+                <ons-toolbar-button class="zmdi zmdi-alert-octagon"></ons-toolbar-button>
+            </div>
         </ons-toolbar>
-      
-        
-      </ons-page>
+        <ons-tabbar swipeable position="auto">
+            <ons-tab page="Home.html" label="Home" icon="ion-home, material:md-home" badge="7" active>
+            </ons-tab>
+            <ons-tab page="Cart.html" label="Cart" icon="md-shopping-cart">
+            </ons-tab>
+        </ons-tabbar>
+    </ons-page>
+
+    <template id="Home.html">
+        <ons-page id="Home">
+            <p style="text-align: center; margin-top: 10px;">
+                <ons-search-input placeholder="Search" onchange="ons.notification.alert('Searched for: ' + this.value)"></ons-search-input>
+            </p>
+        </ons-page>
+    </template>
+
+    <template id="Cart.html">
+        <ons-page id="Cart">
+            <p style="text-align: center;">
+                This is the second page.
+            </p>
+        </ons-page>
+    </template>
+
+
 </body>
+
 </html>
