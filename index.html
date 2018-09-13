@@ -1,246 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="ejs.js"></script>
-    <title>Shopping</title>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="ejs.js"></script>
+  <style>
+    .toolbaricon {
+      padding-left: 5px;
+      padding-bottom: 5px;
+      padding-right: 5px;
+      color: orange;
+    }
+  </style>
 </head>
 
-<body>
 
+<body>
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-icon class="toolbaricon" size="30px" icon="fa-shopping-bag">
+        </ons-icon>
+      </div>
+      <div class="center" id="appname">#</div>
+      <div class="right">
+        <ons-icon class="toolbaricon" size="30px" icon="md-help">
+        </ons-icon>
+      </div>
+    </ons-toolbar>
 
     <ons-tabbar swipeable position="auto">
-        <ons-tab page="Home.html" label="Home" icon="ion-home, material:md-home" badge="7" active>
-        </ons-tab>
-        <ons-tab page="Cart.html" label="Cart" icon="md-shopping-cart">
-        </ons-tab>
+      <ons-tab page="tab1.html" label="Home" icon="ion-home, material:md-home" badge="7" active>
+      </ons-tab>
+      <ons-tab page="tab2.html" label="Cart" icon="fa-shopping-cart" active-icon="fa-shopping-cart">
+      </ons-tab>
     </ons-tabbar>
+  </ons-page>
+
+  <template id="tab1.html">
+    <ons-page id="Tab1">
+      <p style="text-align: center; margin-top: 10px;">
+        <ons-search-input placeholder="Search" onchange="ons.notification.alert('Searched for: ' + this.value)"></ons-search-input>
+      </p>
+      <ons-carousel swipeable auto-scroll overscrollable id="carousel" style="height: 300px;">
+        <ons-carousel-item id="carousel1" style="background: url('images/1.jpg') no-repeat center; background-size: contain;">
+        </ons-carousel-item>
+        <ons-carousel-item id="carousel2" style="background: url('images/2.jpg') no-repeat center; background-size: contain;">
+        </ons-carousel-item>
+        <ons-carousel-item id="carousel3" style="background: url('images/3.jpg') no-repeat center; background-size: contain;">
+        </ons-carousel-item>
+      </ons-carousel>
+      <ons-row style="height:120px" vertical-align="center">
+        <div id="icons"></div>
+
+        <script id="icon_template" type="text/template">
+        <ons-col style="background:#66ff99;">
+          <p style="text-align: center; margin: 10px;">
+            <ons-icon size="60px" icon="<%= category.icon %>"></ons-icon>
+          </p>
+          <p style="text-align: center; margin: 10px;" id="icon1_text">
+            <%= category.name %>
+          </p>
+        </ons-col>
+        </script>
+
+      </ons-row>
     </ons-page>
+  </template>
 
-    <template id="Home.html">
-        <ons-page id="tool">
-            <ons-toolbar style="background: rgb(197, 201, 206) ;">
-                <div class="left">
-                    <ons-toolbar-button icon="md-shopping-basket"></ons-toolbar-button>
-                </div>
-                <div class="center" id="appname">#</div>
-                <div class="right">
-                    <ons-toolbar-button icon="md-alert-octagon"></ons-toolbar-button>
-                </div>
-            </ons-toolbar>
-            <ons-page id="Home">
-                <p style="text-align: center; margin-top: 10px;">
-                    <ons-search-input placeholder="Search" onchange="ons.notification.alert('Searched for: ' + this.value)"></ons-search-input>
-                </p>
-                <ons-carousel swipeable auto-scroll overscrollable id="carousel" style="height: 300px;">
-                    <ons-carousel-item id="carousel1" style="background: url('images/1.jpg') no-repeat center; background-size: contain">
-
-                    </ons-carousel-item>
-                    <ons-carousel-item id="carousel2"style="background: url('images/2.jpg') no-repeat center; background-size: contain">
-
-                    </ons-carousel-item>
-                    <ons-carousel-item id="carousel3" style="background: url('images/3.jpg') no-repeat center; background-size: contain">
-
-                    </ons-carousel-item>
-                </ons-carousel>
-                <ons-row fullscreen style="height:120" ; vertical-align "center";>
-                    <ons-col style="background: palevioletred">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" id="icon1" icon="md-face"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;" id="icon1_text">
-                            Beauty
-                        </p>
-                    </ons-col>
-                    <ons-col style="background: greenyellow">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-bike"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Sports
-                        </p>
-                    </ons-col>
-                    <ons-col style="background: rgb(13, 195, 250)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-laptop"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Computer
-                        </p>
-                    </ons-col>
-                </ons-row>
-                <ons-row fullscreen style="height:120" ; vertical-align "center";>
-                    <ons-col style="background: rgb(208, 160, 224)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-camera"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Camera
-                        </p>
-                    </ons-col>
-                    <ons-col style="background: rgb(82, 199, 144)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-seat"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Furniture
-                        </p>
-                    </ons-col>
-                    <ons-col style="background: rgb(64, 152, 211)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-smartphone-iphone"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Smartphone
-                        </p>
-                    </ons-col>
-                </ons-row>
-                <ons-row fullscreen style="height:120" ; vertical-align "center";>
-                    <ons-col style="background: rgb(222, 191, 228)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-toys"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Toy
-                        </p>
-                    </ons-col>
-                    <ons-col style="background: rgb(138, 238, 179)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-wrench"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Hardware
-                        </p>
-                    </ons-col>
-                    <ons-col style="background: rgb(123, 171, 235)">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-floppy"></ons-icon>
-                        </p>
-                        <p style="text-align: center; margin: 10px;">
-                            Appliance
-                        </p>
-                    </ons-col>
-                </ons-row>
-
-            </ons-page>
-    </template>
-
-    <template id="Cart.html">
-        <ons-page id="tool">
-            <ons-toolbar style="background: rgb(197, 201, 206) ;">
-                <div class="left">
-                    <ons-toolbar-button icon="md-shopping-basket"></ons-toolbar-button>
-                </div>
-                <div class="center">#</div>
-                <div class="right">
-                    <ons-toolbar-button icon="md-alert-octagon"></ons-toolbar-button>
-                </div>
-            </ons-toolbar>
-            <ons-page id="Cart">
-                <ons-list-header>SHOPPING CART</ons-list-header>
-                <ons-list-item>
-                    <div class="left">
-                        <img class="list-item__thumbnail" src="images\item1.jpg">
-                    </div>
-                    <div class="center">
-                        <span class="list-item__title">Apple Watch Series 3 GPS 42mm Gray</span>
-                        <span class="list-item__subtitle" style="color: blue">฿12,650.00</span>
-                    </div>
-                    <div class="right">
-                        <ons-icon size="20px" icon="md-close-circle"></ons-icon>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="left">
-                        <img class="list-item__thumbnail" src="images\item2.jpg">
-                    </div>
-                    <div class="center">
-                        <span class="list-item__title">MICROLAB SPEAKER 2.1</span>
-                        <span class="list-item__subtitle" style="color: blue">฿1,570.00</span>
-                    </div>
-                    <div class="right">
-                        <ons-icon size="20px" icon="md-close-circle"></ons-icon>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="left">
-                        <img class="list-item__thumbnail" src="images\item3.jpg">
-                    </div>
-                    <div class="center">
-                        <span class="list-item__title">NIKE AIR MAX 90 Black-Gray-red Size 40 </span>
-                        <span class="list-item__subtitle" style="color: blue">฿2,990.00</span>
-                    </div>
-                    <div class="right">
-                        <ons-icon size="20px" icon="md-close-circle"></ons-icon>
-                    </div>
-                </ons-list-item>
-                <section style="padding: 8px">
-                    <ons-button modifier="large">PROCEED TO PAY</ons-button>
-                </section>
-            </ons-page>
-    </template>
-
+  <template id="tab2.html">
+    <ons-page id="Tab2">
+      <ons-list>
+        <ons-list-header>Shopping Cart</ons-list-header>
+        <ons-list-item>
+          <div class="left">
+            <img class="list-item__thumbnail" src="images/item1.jpg">
+          </div>
+          <div class="center">
+            <span class="list-item__title">Apple Watch Series 3 GPS 42mm Grey</span>
+            <span class="list-item__subtitle" style="color: blue">฿12,650.00</span>
+          </div>
+          <div class="right">
+            <p style="text-align: center; margin: 10px;">
+              <ons-icon style="color: grey" size="30px" icon="md-delete"></ons-icon>
+            </p>
+          </div>
+        </ons-list-item>
+        <ons-list-item>
+          <div class="left">
+            <img class="list-item__thumbnail" src="images/item2.jpg">
+          </div>
+          <div class="center">
+            <span class="list-item__title">MICROLAB SPEAKER 2.1</span>
+            <span class="list-item__subtitle" style="color: blue">฿1,570.00</span>
+          </div>
+          <div class="right">
+            <p style="text-align: center; margin: 10px;">
+              <ons-icon style="color: grey" size="30px" icon="md-delete"></ons-icon>
+            </p>
+          </div>
+        </ons-list-item>
+        <ons-list-item>
+          <div class="left">
+            <img class="list-item__thumbnail" src="images/item3.jpg">
+          </div>
+          <div class="center">
+            <span class="list-item__title">Nike Air Max 90 ดำเทาแดง เบอร์ 40</span>
+            <span class="list-item__subtitle" style="color: blue">฿2,990.00</span>
+          </div>
+          <div class="right">
+            <p style="text-align: center; margin: 10px;">
+              <ons-icon style="color: grey" size="30px" icon="md-delete"></ons-icon>
+            </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+      <p style="text-align: center; margin: 10px;">
+        <ons-button modifier="large">PROCEED TO PAY</ons-button>
+      </p>
+    </ons-page>
+  </template>
 </body>
 <script>
-    var prev = function () {
-        var carousel = document.getElementById('carousel');
-        carousel.prev();
-    };
-
-    var next = function () {
-        var carousel = document.getElementById('carousel');
-        carousel.next();
-    };
-
-    ons.ready(function () {
-        var carousel = document.addEventListener('postchange', function (event) {
-            console.log('Changed to ' + event.activeIndex)
-        });
-    });
-
-    getHomeData();
-
-    document.addEventListener('prechange', function (event) {
-        if (event.index == 0) {
-            console.log('Home Clicked');
-            //get data from home Screen
-            getHomeData();
-        } else if (event.index == 1) {
-            console.log('Cart click');
-            //get data from Cart Screen
-            getCartData();
-        }
-    });
-    function getHomeData(){
-        $.getJSON('home.json',function(data){
-            console.log(data);
-            $('#appname').html(data.appname);
-            var style1 = "backgroud:url('images/"+data.slides[0]+"') no-repeat center; background-size: contain;'";
-            console.log(style1);
-            $('#appname').attr('style',style1);
-            $('#carousel1').attr('style',style1)
-            $('#icon1').attr('icon',data.categories[0].icon);
-            $('#icon1_text').html(data.categories[0].name);
-            
-        });
-
+  getHomeData();
+  document.addEventListener('prechange', function (event) {
+    if (event.index == 0) {
+      console.log('Home clicked');
+      // get data for home screen  
+      getHomeData();
+    } else if (event.index == 1) {
+      console.log('Cart clicked');
+      // get data for cart screen  
+      getCartData();
     }
-    function getCartData(){
-        $.getJSON('cart.json',function(data){
-            console.log(data);
-        });
-
-
-    }
-
+  });
+  function getHomeData() {
+    $.getJSON('home.json', function (data) {
+      console.log(data);
+      $('#appname').html(data.appname);
+      var style = "background: url('images/" + data.slides[0] + "') no-repeat center; background-size: contain;'";
+      $('#carousel1').attr('style', style)
+      var icon_template = $('#icon_template').html();
+      var html = ejs.render(icon_template, {category : data.categories[0]});
+      $('#icons').html(html);
+    });
+  }
+  function getCartData() {
+    $.getJSON('cart.json', function (data) {
+      console.log(data);
+    });
+  }
 </script>
 
 </html>
