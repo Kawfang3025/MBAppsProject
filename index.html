@@ -7,11 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-    <link rel="stylesheet" href="path/to/material-design-iconic-font/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-
+    <script src="ejs.js"></script>
     <title>Shopping</title>
 </head>
 
@@ -32,9 +31,7 @@
                 <div class="left">
                     <ons-toolbar-button icon="md-shopping-basket"></ons-toolbar-button>
                 </div>
-                <div class="center">
-                    <div align="center">Home</div>
-                </div>
+                <div class="center" id="appname">#</div>
                 <div class="right">
                     <ons-toolbar-button icon="md-alert-octagon"></ons-toolbar-button>
                 </div>
@@ -44,22 +41,22 @@
                     <ons-search-input placeholder="Search" onchange="ons.notification.alert('Searched for: ' + this.value)"></ons-search-input>
                 </p>
                 <ons-carousel swipeable auto-scroll overscrollable id="carousel" style="height: 300px;">
-                    <ons-carousel-item style="background: url('images/1.jpg') no-repeat center; background-size: contain">
+                    <ons-carousel-item id="carousel1" style="background: url('images/1.jpg') no-repeat center; background-size: contain">
 
                     </ons-carousel-item>
-                    <ons-carousel-item style="background: url('images/2.jpg') no-repeat center; background-size: contain">
+                    <ons-carousel-item id="carousel2"style="background: url('images/2.jpg') no-repeat center; background-size: contain">
 
                     </ons-carousel-item>
-                    <ons-carousel-item style="background: url('images/3.jpg') no-repeat center; background-size: contain">
+                    <ons-carousel-item id="carousel3" style="background: url('images/3.jpg') no-repeat center; background-size: contain">
 
                     </ons-carousel-item>
                 </ons-carousel>
                 <ons-row fullscreen style="height:120" ; vertical-align "center";>
                     <ons-col style="background: palevioletred">
                         <p style="text-align: center; margin: 10px;">
-                            <ons-icon size="60px" icon="md-face"></ons-icon>
+                            <ons-icon size="60px" id="icon1" icon="md-face"></ons-icon>
                         </p>
-                        <p style="text-align: center; margin: 10px;">
+                        <p style="text-align: center; margin: 10px;" id="icon1_text">
                             Beauty
                         </p>
                     </ons-col>
@@ -142,9 +139,7 @@
                 <div class="left">
                     <ons-toolbar-button icon="md-shopping-basket"></ons-toolbar-button>
                 </div>
-                <div class="center">
-                    <div align="center">CART</div>
-                </div>
+                <div class="center">#</div>
                 <div class="right">
                     <ons-toolbar-button icon="md-alert-octagon"></ons-toolbar-button>
                 </div>
@@ -192,6 +187,60 @@
                 </section>
             </ons-page>
     </template>
+
 </body>
+<script>
+    var prev = function () {
+        var carousel = document.getElementById('carousel');
+        carousel.prev();
+    };
+
+    var next = function () {
+        var carousel = document.getElementById('carousel');
+        carousel.next();
+    };
+
+    ons.ready(function () {
+        var carousel = document.addEventListener('postchange', function (event) {
+            console.log('Changed to ' + event.activeIndex)
+        });
+    });
+
+    getHomeData();
+
+    document.addEventListener('prechange', function (event) {
+        if (event.index == 0) {
+            console.log('Home Clicked');
+            //get data from home Screen
+            getHomeData();
+        } else if (event.index == 1) {
+            console.log('Cart click');
+            //get data from Cart Screen
+            getCartData();
+        }
+    });
+    function getHomeData(){
+        $.getJSON('home.json',function(data){
+            console.log(data);
+            $('#appname').html(data.appname);
+            var style1 = "backgroud:url('images/"+data.slides[0]+"') no-repeat center; background-size: contain;'";
+            console.log(style1);
+            $('#appname').attr('style',style1);
+            $('#carousel1').attr('style',style1)
+            $('#icon1').attr('icon',data.categories[0].icon);
+            $('#icon1_text').html(data.categories[0].name);
+            
+        });
+
+    }
+    function getCartData(){
+        $.getJSON('cart.json',function(data){
+            console.log(data);
+        });
+
+
+    }
+
+</script>
 
 </html>
