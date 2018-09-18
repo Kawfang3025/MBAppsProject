@@ -1,5 +1,5 @@
 {
-    "appname" : "PSU Shopping",
+    "appname" : "PSU Shoppee",
     "slides" : [ "1.jpg", "2.jpg", "3.jpg" ],
     "categories" : [
         { "name" : "Beauty" , "icon": "md-face"},
