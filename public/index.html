@@ -7,12 +7,25 @@
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="ejs.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBp3JyP4kY04qsprYOmZ5n4eGEdJnzFQ8k",
+            authDomain: "shopee-50b0c.firebaseapp.com",
+            databaseURL: "https://shopee-50b0c.firebaseio.com",
+            projectId: "shopee-50b0c",
+            storageBucket: "shopee-50b0c.appspot.com",
+            messagingSenderId: "777247292085"
+        };
+        firebase.initializeApp(config);
+    </script>
     <style>
         .toolbaricon {
             padding-left: 5px;
             padding-bottom: 5px;
             padding-right: 5px;
-            color:slategrey;
+            color: slategrey;
         }
     </style>
 </head>
