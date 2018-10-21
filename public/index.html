@@ -141,34 +141,6 @@
                 </ons-list-item>
                 <%});%>
                 </script>
-                <!-- <ons-list-item>
-                    <div class="left">
-                        <img class="list-item__thumbnail" src="images/item2.jpg">
-                    </div>
-                    <div class="center">
-                        <span class="list-item__title">MICROLAB SPEAKER 2.1</span>
-                        <span class="list-item__subtitle" style="color: blue">฿1,570.00</span>
-                    </div>
-                    <div class="right">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon style="color: grey" size="30px" icon="md-delete"></ons-icon>
-                        </p>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="left">
-                        <img class="list-item__thumbnail" src="images/item3.jpg">
-                    </div>
-                    <div class="center">
-                        <span class="list-item__title">Nike Air Max 90 ดำเทาแดง เบอร์ 40</span>
-                        <span class="list-item__subtitle" style="color: blue">฿2,990.00</span>
-                    </div>
-                    <div class="right">
-                        <p style="text-align: center; margin: 10px;">
-                            <ons-icon style="color: grey" size="30px" icon="md-delete"></ons-icon>
-                        </p>
-                    </div>
-                </ons-list-item> -->
             </ons-list>
             <p style="text-align: center; margin: 10px;">
                 <ons-button modifier="large">PROCEED TO PAY</ons-button>
@@ -213,15 +185,6 @@
             console.log("Error getting document:", error);
         });
 
-        // $.getJSON('home.json', function (data) {
-        //   console.log(data);
-        //   $('#appname').html(data.appname);
-        //   var style = "background: url('images/" + data.slides[0] + "') no-repeat center; background-size: contain;'";
-        //   $('#carousel1').attr('style', style)
-        //   var icon_template = $('#icon_template').html();
-        //   var html = ejs.render(icon_template, { categories: data.categories });
-        //   $('#icons').html(html);
-        // });
     }
     function getCartData() {
         var docRef = db.collection("UI").doc("cart");
@@ -239,9 +202,7 @@
         }).catch(function (error) {
             console.log("Error getting document:", error);
         });
-        // $.getJSON('cart.json', function (data) {
-        //   console.log(data);
-        // });
+        
     }
     function getAllProduct() {
         //get all product from firebase
