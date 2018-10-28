@@ -42,6 +42,9 @@
       padding-right: 5px;
       color: skyblue;
     }
+     .ons-page{
+         height: 100%;
+     }
   </style>
 </head>
 
@@ -97,7 +100,7 @@
             <%= category.name %>
           </p>
         </ons-col>
-        <%});%>
+        <%});%> 
         </ons-row>
         </script>
 
@@ -125,13 +128,14 @@
                         <% product.forEach(function(product){
                             var item = product.data();%>
                             <ons-col class="bg-light text-dark" width="50%">
-                                <div ><img class="img-fluid" src="<%= item.img %>">  </div>
+                                <div style="" >
+                                <div ><img class="center" style="text-align:center;margin:2%;max-height:150px;max-width: 99%;" src="<%= item.img %>">  </div>
                                 <div><p style="white-space: nowrap; width: 90%;overflow: hidden;text-overflow: ellipsis; text-align: center; margin: 10px;" id="title">
                                         <%= item.title%>
                                       </p></div>
-                                <div><p class="text-danger" style="text-align: center; margin: 10px;" id="price">
+                                <div><p  style="color:blue;text-align: center; margin: 10px;" id="price">
                                         ฿<%= item.price %>
-                                      </p></div>    
+                                      </p></div></div>    
                             </ons-col>
                 <%});%>
                 </ons-row>       
@@ -206,7 +210,7 @@
                 console.log("No such document!");
             }
         }).catch(function (error) {
-            console.log("Error getting document:", error);
+            console.log("Error getting document:"   , error);
         });
 
     }
