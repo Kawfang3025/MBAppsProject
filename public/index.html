@@ -63,7 +63,7 @@
             </div>
         </ons-toolbar>
 
-        <ons-tabbar swipeable position="auto">
+        <ons-tabbar swipeable position="auto" id="tabbar">
             <ons-tab class="bg-dark" page="tab1.html" label="Home" icon="ion-home, material:md-home" badge="7" active>
             </ons-tab>
             <ons-tab class="bg-dark" page="tab3.html" label="Shopping" icon="fa-shopping-bag" active-icon="fa-shopping-bag">
@@ -91,19 +91,20 @@
 
             <script id="icon_template" type="text/template">
         <ons-row style="height:120px" vertical-align="center">  
-        <% categories.forEach(function(category){%>  
-        <ons-col style="background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );" width="33%">
-          <p style="text-align: center; margin: 10px;">
+        <% categories.forEach(function(category){%> 
+            
+        <ons-col style="background-image: linear-gradient( 109.6deg,  rgba(36,45,57,1) 11.2%, rgba(16,37,60,1) 51.2%, rgba(0,0,0,1) 98.6% );" width="33%">
+          <ons-button modifier="quiet" onclick="changeTab('<%= category.name %>')">
+            <p style="text-align: center; margin: 10px;" >
             <ons-icon size="60px" icon="<%= category.icon %>"></ons-icon>
           </p>
           <p style="text-align: center; margin: 10px;" id="icon1_text">
             <%= category.name %>
-          </p>
+          </p></ons-button>
         </ons-col>
         <%});%> 
         </ons-row>
         </script>
-
 
         </ons-page>
     </template>
@@ -180,6 +181,7 @@
     getHomeData();
     document.addEventListener('prechange', function (event) {
         if (event.index == 0) {
+            localStorage.clear('item');
             console.log('Home clicked');
             // get data for home screen  
             getHomeData();
@@ -190,8 +192,14 @@
         } else if (event.index == 1) {
             console.log('Product clicked');
             // get data for cart screen  
-            getAllProduct();
-        }
+            var item = localStorage.getItem('item');
+            console.log('showitem clicked');
+            if(item == null){
+                getAllProduct();
+            }else{getAllProduct(item);}
+            localStorage.clear();
+            
+        } 
     });
     function getHomeData() {
         var docRef = db.collection("UI").doc("home");
@@ -232,18 +240,35 @@
         });
 
     }
-    function getAllProduct() {
+    function getAllProduct(item) {
         // get all product from firebase
-        var allProductRef = db.collection("PRODUCT");
-        allProductRef.get().then(function (querySnapshot) {
+
+            if (item == null){
+            var allProductRef = db.collection("PRODUCT");
+            allProductRef.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 // doc.data() is never undefined for query doc snapshots
                 // console.log(doc.id, " => ", doc.data());
                 var products_template = $('#products_template').html();
                 var html = ejs.render(products_template, { product: querySnapshot.docs });
-                $('#products').html(html);
+                $('#products').html(html); 
             });
-        });
+        });}else{ 
+            console.log(item)
+            var allProductRef = db.collection("PRODUCT").where("category","==",item);
+                allProductRef.get().then(function (querySnapshot) {
+                    
+
+                var products_template = $('#products_template').html();
+                var html = ejs.render(products_template, { product: querySnapshot.docs });
+                $('#products').html(html); 
+           
+                });
+        }
+    }
+    function changeTab(item){
+        localStorage.setItem('item',item);
+        document.getElementById('tabbar').setActiveTab(1);
     }
 
     function addNewData() {
